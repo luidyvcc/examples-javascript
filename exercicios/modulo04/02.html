@@ -1,0 +1,65 @@
+<html>
+
+    <head>
+        <title>
+            Curso JS
+        </title>
+    </head>
+
+    <body>
+
+        <input type="text" name="user">
+        <button>Adicionar</button>
+
+        <div id="lista"></div>
+            
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        
+        <script>
+
+            var button = document.querySelector("button");
+
+            button.addEventListener("click", function(){
+
+                var userName = document.querySelector("input[name=user]").value;
+
+                axios.get('https://api.github.com/users/'+userName+'/repos')
+                .then(function(response){
+                    render(response.data);
+                })
+                .catch(function(error){
+                    //console.warn(error);
+                });
+
+            });
+
+            function render(datas) {
+
+                var row = document.createElement('ul');
+
+                for ( data of datas ) {
+
+                    var col = document.createElement('li');
+                    var texto = document.createTextNode(data.name);
+                    col.appendChild(texto);
+                    
+                    row.appendChild(col);
+
+                    console.log(data.name);
+                    
+                }
+
+                var lista = document.querySelector("#lista");
+                lista.appendChild(row);
+
+            }
+
+            
+           
+        
+        </script>
+
+    </body>
+
+</html>

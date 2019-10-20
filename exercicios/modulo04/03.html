@@ -1,0 +1,105 @@
+<html>
+
+    <head>
+        <title>
+            Curso JS
+        </title>
+    </head>
+
+    <body>
+
+        <input type="text" name="user">
+        <button>Adicionar</button>
+
+        <div id="lista"></div>
+            
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        
+        <script>
+
+            var button = document.querySelector("button");
+
+            button.addEventListener("click", function(){
+
+                var userName = document.querySelector("input[name=user]").value;
+
+                axios.get('https://api.github.com/users/'+userName+'/repos')
+                .then(function(response){
+                    render(response.data);
+                })
+                .catch(function(error){
+                    renderError(error);
+                });
+
+            });
+
+            function render(datas) {
+
+                var lista = document.querySelector("#lista");
+                var row = document.createElement('ul');
+
+                var colLoad = document.createElement('li');
+                var textLoad = document.createTextNode("Carregando ...");
+                
+                colLoad.appendChild(textLoad);                    
+                row.appendChild(colLoad);
+                lista.appendChild(row);
+                
+                setTimeout(function(){
+                    for ( data of datas ) {
+
+                    var col = document.createElement('li');
+                    var texto = document.createTextNode(data.name);
+
+                    col.appendChild(texto);                    
+                    row.appendChild(col);
+
+                    }
+                    
+                    deleteFirstElement();
+                }, 2000);
+                
+
+
+                lista.appendChild(row);
+
+            }
+
+            function renderError(error) {
+
+                var lista = document.querySelector("#lista");
+                var row = document.createElement('ul');
+                var col = document.createElement('li');
+                var texto = document.createTextNode(error);
+
+                col.appendChild(texto);                
+                row.appendChild(col);
+                lista.appendChild(row);
+
+            }
+
+            function convertoObjToArray(datas) {
+
+                var dataArray = [];
+
+                for ( data of datas ) dataArray.push(data.name);
+
+                return dataArray;
+                
+            }
+
+            function deleteFirstElement() { 
+                var row = document.querySelector('ul');
+                var child = row.firstElementChild;  
+                row.removeChild(child); 
+            }
+
+            
+           
+        
+        </script>
+
+    </body>
+
+</html>

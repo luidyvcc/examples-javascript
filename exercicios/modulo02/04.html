@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" name="nome">
+        <button onClick="adicionar()">Adicionar</button>
+
+        <hr>
+
+        <button id="gera-lista">Gera Lista</button>
+
+        <ul> </ul>
+    </div>
+</body>
+
+<script>
+
+    var btnGeraLista = document.querySelector("button#gera-lista");
+    var app = document.querySelector("#app");
+    var ul = document.querySelector("div#app ul");
+
+    var nomes = ["Diego", "Gabriel", "Lucas"];
+
+    btnGeraLista.addEventListener("click", function() {
+        render();
+    });
+
+    function render() {    
+        
+        cleanList();
+
+        for ( nome of nomes ) {
+            var li = document.createElement("li");
+            var contentLi = document.createTextNode(nome);
+
+            li.appendChild(contentLi);
+
+            ul.appendChild(li);
+        }
+
+        app.appendChild(ul); 
+    }
+
+    function adicionar() {
+        var inputNome = document.querySelector("input[name=nome]").value;
+        document.querySelector("input[name=nome]").value="";
+        if(inputNome.length>0) nomes.push(inputNome);
+        render();
+    }
+
+    function cleanList() {
+        ul.innerHTML = '';
+    }
+
+</script>
+</html>

@@ -1,0 +1,46 @@
+<html>
+
+    <head>
+        <title>
+            Curso JS
+        </title>
+    </head>
+
+    <body>
+        <div id="container">
+            <input type="date" name="data">
+            <div id='squad'></div>
+        </div>
+        
+        <script>
+            
+            var linkElement = document.createElement('a');
+            linkElement.setAttribute('href', 'www.googlr.com');
+
+            var textoDescricao = document.createTextNode("Google");
+            linkElement.appendChild(textoDescricao);
+
+            var container = document.querySelector('div#container');
+            container.appendChild(linkElement);
+
+            setTimeout(function() {
+                var inputElement = document.querySelector("div input[name=data]");
+                inputElement.setAttribute('type', 'text');
+                alert(99);
+            }, 1000);
+
+            setTimeout(function() {
+                var inputElement = document.querySelector("div input[name=data]");
+                container.removeChild(inputElement);
+            }, 5000);
+
+            var squadElement = document.querySelector("div#container div#squad");
+            squadElement.style.width = 100;
+            squadElement.style.height = 100;
+            squadElement.style.backgroundColor = "#666";
+
+        </script>
+
+    </body>
+
+</html>

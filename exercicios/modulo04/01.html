@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="number" id="idade">
+    <button id="enviarIdade">Enviar</button>
+
+    <script>
+
+        var buttonEnviar = document.querySelector("body button#enviarIdade");
+
+        function checaIdade(idade) {
+            // Retornar uma promise
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    if(idade >= 18) resolve(idade+" - Maior que 18");
+                    else reject(idade+" - Menor que 18");
+                }, 2000);
+            });
+        }
+
+        buttonEnviar.addEventListener("click", function() {
+
+            var inputIdade = document.querySelector("body input#idade").value;
+
+            checaIdade(inputIdade)
+                .then(function(resolve) {
+                    alert(resolve);
+                })
+                .catch(function(reject) {
+                    alert(reject);
+                });
+
+        });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .quadrado {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            display: inline-flex;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div class="quadrado" id="cria-quadrado">
+            <button>Crie um quadrado</button>
+        </div>
+    </div>
+    
+
+
+    <script>
+        
+        var btnCriaQuadrado = document.querySelector("#cria-quadrado");
+
+        btnCriaQuadrado.addEventListener("click", function() {
+            criaQuadrado();
+        });
+
+        function criaQuadrado() {
+            var containerApp =  document.querySelector("#app");
+            var newColor = getRandomColor(); 
+
+            var quadrado = document.createElement("div");
+            quadrado.setAttribute("class","quadrado");
+            quadrado.setAttribute("onClick","this.style.backgroundColor='"+newColor+"'");
+
+
+            containerApp.appendChild(quadrado);
+        }
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+
+            return color;
+        }
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button id="gera-lista">Gera Lista</button>
+    </div>
+</body>
+
+<script>
+
+    var btnGeraLista = document.querySelector("button#gera-lista");
+
+    btnGeraLista.addEventListener("click", function() {
+        var app = document.querySelector("#app");
+
+        var nomes = ["Diego", "Gabriel", "Lucas"];
+
+        var ul = document.createElement("ul");
+
+        for ( nome of nomes ) {
+            var li = document.createElement("li");
+            var contentLi = document.createTextNode(nome);
+
+            li.appendChild(contentLi);
+
+            ul.appendChild(li);
+        }
+
+        app.appendChild(ul);    
+    });
+
+    
+
+</script>
+</html>
